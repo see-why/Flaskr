@@ -32,7 +32,7 @@ def create_app(test_config=None):
     @app.route('/smiley')
     @cross_origin
     def smiley():
-        return ':)'
+        return jsonify({ "message": ":)"})
 
     @app.route('/plants', methods=['GET','POST'])
     #@cross_origin
