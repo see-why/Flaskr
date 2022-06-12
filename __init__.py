@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from models import setup_db, Plant
 import os
@@ -33,6 +33,22 @@ def create_app(test_config=None):
     @cross_origin
     def smiley():
         return ':)'
+
+    @app.route('/plants', methods=['GET','POST'])
+    #@cross_origin
+    def get_plants():
+        # Implement pagination
+        page = request.args.get('page', 1, type=int)
+        start = (page - 1) * 10
+        end = start + 10
+
+        plants = Plant.query.all()
+        formatted_plants = [plant.format() for plant in plants]
+        return jsonify({
+            'success': True,
+            'plants':formatted_plants[start:end],
+            'total_plants':len(formatted_plants)
+            })
 
     return app
 
