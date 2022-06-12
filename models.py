@@ -5,7 +5,8 @@ import json
 from sqlalchemy.sql.schema import PrimaryKeyConstraint
 
 database_name = "plantsdb"
-database_path ="postgresql://{}:{}@{}/{}".format('oiyadi', 'oyinlola','localhost:5432', database_name)
+database_path = "postgresql://{}:{}@{}/{}".format(
+    'oiyadi', 'oyinlola', 'localhost:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -30,27 +31,22 @@ class Plant(db.Model):
     is_poisonous = Column(Boolean)
     primary_color = Column(String)
 
-
     def __init__(self, name, scientific_name, is_poisonous, primary_color):
         self.name = name
         self.scientific_name = scientific_name
         self.is_poisonous = is_poisonous
         self.primary_color = primary_color
 
-
     def insert(self):
         db.session.add(self)
         db.session.commit()
 
-
     def update(self):
         db.session.commit()
-
 
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
 
     def format(self):
         return {
