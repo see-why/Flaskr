@@ -1,11 +1,12 @@
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
+from models import setup_db, Plant
 import os
 
 def create_app(test_config=None):
     app = Flask(__name__)
     CORS(app) # basic initialization
-
+    setup_db(app)
     # CORS(app, resources={r"*/api/*": { "origins": '*' }}) more specific initialization
 
     app.config.from_mapping(
