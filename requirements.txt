@@ -25,7 +25,7 @@ pytz==2022.1
 six==1.16.0
 SQLAlchemy==1.4.36
 sqlitis==0.0.5
-sqlparse==0.3.0
+sqlparse==0.4.4
 toml==0.10.2
 virtualenv==20.14.1
 Werkzeug==2.0.3
